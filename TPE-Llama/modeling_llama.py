@@ -306,6 +306,12 @@ class LlamaAttention(nn.Module):
         self.o_proj = nn.Linear(self.num_heads * self.head_dim, self.hidden_size, bias=config.attention_bias)
         self._init_rope()
 
+        self.expert_nums = 2
+        self.gate_1 = nn.Linear(self.head_dim, 4 * self.head_dim, bias=True)
+        self.gate_2 = nn.Linear(self.head_dim, 4 * self.head_dim, bias=True)
+        self.gate_3 = nn.Linear(4 * self.head_dim, self.expert_nums, bias=True)
+        self.act_fn = ACT2FN[config.hidden_act]
+
     def _init_rope(self):
         if self.config.rope_scaling is None:
             self.rotary_emb = LlamaRotaryEmbedding(
