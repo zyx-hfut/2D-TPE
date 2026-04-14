@@ -1,6 +1,5 @@
 absl-py==2.1.0
 accelerate==0.21.0
-adabench==1.2.64
 aii-pypai==0.1.40.45
 aiohttp==3.9.5
 aiosignal==1.3.1
