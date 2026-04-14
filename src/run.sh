@@ -1,10 +1,10 @@
 CUDA_VISIBLE_DEVICES=7,6,5,4,3,2,1,0 torchrun --nproc_per_node=8 --master_port=20213 sft_minicpm.py  \
-        --model_name_or_path /model/MiniCPM-2B-sft-bf16-llama-format \
+        --model_name_or_path /data/zyx/model/models--openbmb--MiniCPM-2B-sft-bf16-llama-format \
         --bf16 True \
-        --output_dir /output/rel_extraction_2d \
+        --output_dir ../output/rel_extraction_2d \
         --model_max_length 4096 \
         --use_flash_attn True \
-        --data_path /data/rel_extraction_train_62954.json \
+        --data_path /data/zyx/dataset/TableInstruct/data_v3/rel_extraction_train_62954.json \
         --low_rank_training False \
         --num_train_epochs 2  \
         --per_device_train_batch_size 2     \
