@@ -22,7 +22,7 @@ project_root = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
 if project_root not in sys.path:
     sys.path.append(project_root)
 
-from TPE-Llama.modeling_llama import LlamaForCausalLM
+from TPE_Llama.modeling_llama import LlamaForCausalLM
 
 torch.set_printoptions(profile="full")
 torch.multiprocessing.set_start_method('spawn',force=True)
