@@ -5,9 +5,9 @@ CUDA_VISIBLE_DEVICES=7,6,5,4,3,2,1,0 torchrun --nproc_per_node=8 --master_port=2
         --model_max_length 4096 \
         --use_flash_attn True \
         --data_path /data/zyx/dataset/TableInstruct/data_v3/rel_extraction_train_62954.json \
-        --low_rank_training False \
+        --low_rank_training True \
         --num_train_epochs 2  \
-        --per_device_train_batch_size 2     \
+        --per_device_train_batch_size 1     \
         --gradient_accumulation_steps 4     \
         --evaluation_strategy "no"     \
         --save_strategy "epoch"     \
@@ -17,5 +17,5 @@ CUDA_VISIBLE_DEVICES=7,6,5,4,3,2,1,0 torchrun --nproc_per_node=8 --master_port=2
         --warmup_ratio 0.03     \
         --lr_scheduler_type "cosine"     \
         --logging_steps 10     \
-        --deepspeed ds_configs/stage2.json \
+        --deepspeed ../ds_configs/stage2.json \
         --tf32 True
