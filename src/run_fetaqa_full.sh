@@ -1,0 +1,21 @@
+CUDA_VISIBLE_DEVICES=7,6,5,4,3,2,1,0 torchrun --nproc_per_node=8 --master_port=20213 sft_minicpm.py  \
+        --model_name_or_path /data/zyx/model/models--openbmb--MiniCPM-2B-sft-bf16-llama-format \
+        --bf16 True \
+        --output_dir ../output/fetaqa_2d_full \
+        --model_max_length 4096 \
+        --use_flash_attn True \
+        --data_path /data/zyx/dataset/TableInstruct/data_v3/fetaqa_train_7325.json \
+        --low_rank_training True \
+        --num_train_epochs 2  \
+        --per_device_train_batch_size 1     \
+        --gradient_accumulation_steps 4     \
+        --evaluation_strategy "no"     \
+        --save_strategy "epoch"     \
+        --save_total_limit 1     \
+        --learning_rate 2e-5     \
+        --weight_decay 0.0     \
+        --warmup_ratio 0.03     \
+        --lr_scheduler_type "cosine"     \
+        --logging_steps 10     \
+        --deepspeed ../ds_configs/stage2_offload.json \
+        --tf32 True

@@ -78,7 +78,7 @@ def encode_and_insert_separators(table_array, tokenizer):
 
 
 def tokenize_data(to_tokenize_queue, to_output_queue, rank):
-    model_name = '/data/zyx/2026/2D-TPE/output/rel_extraction_2d_merged'
+    model_name = '/data/zyx/2026/2D-TPE/output/hitab_2d_merged'
     config = AutoConfig.from_pretrained(model_name)
     config.remove_unused_columns = False
     config._flash_attn_2_enabled = True
@@ -319,7 +319,7 @@ def output_data(to_output_queue):
             else:
                 continue
         else:
-            with open('./res/rel_extraction_2d_res.json', 'a') as f:
+            with open('/data/zyx/2026/2D-TPE/res/hitab_2d_res.json', 'a') as f:
                 try:
                     json.dump(data, f)
                     f.write('\n')
@@ -340,7 +340,7 @@ if __name__ == "__main__":
     to_output_queue = multiprocessing.Queue(maxsize=100000)
     
     # start
-    reader_process = multiprocessing.Process(target=read_data, args=("/data/zyx/dataset/TableInstruct/eval_data/in_domain_test/rel_extraction_test.json", to_tokenize_queue))
+    reader_process = multiprocessing.Process(target=read_data, args=("/data/zyx/dataset/TableInstruct/eval_data/in_domain_test/hitab_test.json", to_tokenize_queue))
     tokenizer_processes = [multiprocessing.Process(target=tokenize_data, args=(to_tokenize_queue, to_output_queue, rank)) for rank in range(num_workers)]
     output_process = multiprocessing.Process(target=output_data, args=(to_output_queue,))
     

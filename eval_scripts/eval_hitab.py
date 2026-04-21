@@ -26,6 +26,6 @@ def main(args):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description='arg parser')
-    parser.add_argument('--pred_file', type=str, default='../res/hitab_res.json', help='')
+    parser.add_argument('--pred_file', type=str, default='/data/zyx/2026/2D-TPE/res/hitab_2d_res.json', help='')
     args = parser.parse_args()
     main(args)
